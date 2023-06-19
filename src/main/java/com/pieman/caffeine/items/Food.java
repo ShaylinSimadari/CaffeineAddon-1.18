@@ -9,11 +9,11 @@ public enum Food {
     private final boolean meat;
     private final boolean fast;
 
-    private Food() {
+    Food() {
         this(false, false);
     }
 
-    private Food(boolean meat, boolean fast) {
+    Food(boolean meat, boolean fast) {
         this.meat = meat;
         this.fast = fast;
     }

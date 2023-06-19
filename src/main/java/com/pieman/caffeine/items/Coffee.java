@@ -9,21 +9,8 @@ public enum Coffee {
     COFFEE_BEANS,
     COFFEE_GROUND;
 
-    private Coffee() {
+    Coffee() {
     }
-
-//    public FoodProperties getFoodProperties() {
-//        FoodProperties.Builder builder = new FoodProperties.Builder();
-//        if (this.meat) {
-//            builder.meat();
-//        }
-//
-//        if (this.fast) {
-//            builder.fast();
-//        }
-//
-//        return builder.nutrition(4).saturationMod(0.3F).build();
-//    }
 
     public Item.Properties createProperties() {
         Item.Properties props = new Item.Properties();

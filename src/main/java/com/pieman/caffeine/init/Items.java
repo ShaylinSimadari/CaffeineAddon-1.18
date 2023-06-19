@@ -23,18 +23,19 @@ public class Items {
 
     static {
         ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, "caffeine");
-        FOOD = Helpers.mapOfKeys(Food.class, (food) -> {
-            return register("food/" + food.name(), () -> {
+
+        FOOD = Helpers.mapOfKeys(Food.class, (food) ->
+            register("food/" + food.name(), () ->
                 //decayingitem with food properties (food props based on Food enum)
-                return new DecayingItem(food.createProperties());
-            });
-        });
-        COFFEES = Helpers.mapOfKeys(Coffee.class, (coffee) -> {
-            return register(coffee.name(), () -> {
-                //decayingitem with food properties (food props based on Food enum)
-                return new Item(coffee.createProperties());
-            });
-        });
+                new DecayingItem(food.createProperties())
+            )
+        );
+
+        COFFEES = Helpers.mapOfKeys(Coffee.class, (coffee) ->
+            register(coffee.name(), () ->
+                new Item(coffee.createProperties())
+            )
+        );
     }
 
 }
