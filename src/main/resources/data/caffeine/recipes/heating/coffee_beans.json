@@ -1,0 +1,11 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:heating",
+  "ingredient": {
+    "item": "caffeine:coffee_beans_green"
+  },
+  "result_item": {
+    "item": "caffeine:coffee_beans"
+  },
+  "temperature": 200
+}

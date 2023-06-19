@@ -1,0 +1,11 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:heating",
+  "ingredient": {
+    "item": "minecraft:bone"
+  },
+  "result_item": {
+    "item": "minecraft:bone_meal"
+  },
+  "temperature": 200
+}
