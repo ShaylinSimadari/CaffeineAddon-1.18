@@ -1,7 +1,9 @@
 package com.pieman.caffeine.init;
 
+import com.pieman.caffeine.fluids.FluidType;
 import com.pieman.caffeine.items.Coffee;
 import com.pieman.caffeine.items.Food;
+import net.dries007.tfc.common.TFCItemGroup;
 import net.dries007.tfc.common.items.DecayingItem;
 import net.dries007.tfc.util.Helpers;
 import net.minecraft.world.item.*;
@@ -16,6 +18,7 @@ public class Items {
     public static final DeferredRegister<Item> ITEMS;
     public static final Map<Food, RegistryObject<Item>> FOOD;
     public static final Map<Coffee, RegistryObject<Item>> COFFEES;
+    public static final Map<FluidType, RegistryObject<BucketItem>> FLUID_BUCKETS;
 
     private static <T extends Item> RegistryObject<T> register(String name, Supplier<T> item) {
         return ITEMS.register(name.toLowerCase(Locale.ROOT), item);
@@ -36,6 +39,12 @@ public class Items {
                 new Item(coffee.createProperties())
             )
         );
+
+        FLUID_BUCKETS = FluidType.mapOf((fluid) -> {
+            return register("bucket/" + fluid.name(), () -> {
+                return new BucketItem(fluid.fluid(), (new Item.Properties()).craftRemainder(net.minecraft.world.item.Items.BUCKET).stacksTo(1).tab(TFCItemGroup.MISC));
+            });
+        });
     }
 
 }

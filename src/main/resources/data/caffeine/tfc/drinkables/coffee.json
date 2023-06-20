@@ -1,0 +1,8 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "ingredient": {
+    "caffeine": "caffeine:coffee"
+  },
+  "thirst": 10,
+  "intoxication": 4000
+}
