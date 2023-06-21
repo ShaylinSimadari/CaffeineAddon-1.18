@@ -1,9 +1,9 @@
 {
   "type": "tfc:quern",
   "ingredient": {
-    "item": "caffeine:coffee_beans"
+    "item": "caffeine:food/coffee_beans"
   },
   "result": {
-    "item": "caffeine:coffee_ground"
+    "item": "caffeine:food/coffee_ground"
   }
 }

@@ -1,7 +1,8 @@
 {
   "__comment__": "This file was automatically created by mcresources",
   "ingredient": {
-    "item": "caffeine:food/coffee_beans_green"
+    "item": "caffeine:food/coffee_cherries_dried"
   },
-  "heat_capacity": 1.0
+  "hunger": 0,
+  "decay_modifier": 1.5
 }

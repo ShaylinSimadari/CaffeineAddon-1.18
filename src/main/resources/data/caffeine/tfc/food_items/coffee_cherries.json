@@ -1,0 +1,10 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "ingredient": {
+    "item": "caffeine:food/coffee_cherries"
+  },
+  "hunger": 1,
+  "saturation": 0.5,
+  "decay_modifier": 3.5,
+  "fruit": 0.5
+}

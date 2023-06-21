@@ -1,6 +1,6 @@
 {
    "parent": "item/generated",
    "textures": {
-       "layer0": "caffeine:item/coffee_beans_green"
+       "layer0": "caffeine:item/food/coffee_ground"
    }
 }

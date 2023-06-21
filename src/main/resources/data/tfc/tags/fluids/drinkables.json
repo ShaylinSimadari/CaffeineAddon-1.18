@@ -1,7 +1,8 @@
 {
-  "__comment__": "This file was automatically created by mcresources",
+  "__comment__": "makes it generate a jug item ect",
   "replace": false,
   "values": [
-    "caffeine:coffee"
+    "caffeine:coffee",
+    "caffeine:sweet_coffee"
   ]
 }

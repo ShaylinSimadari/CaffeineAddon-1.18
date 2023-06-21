@@ -1,7 +1,13 @@
 {
   "item.caffeine.food.coffee_cherries": "Coffee Cherries",
-  "item.caffeine.coffee_cherries_dried": "Dried Coffee Cherries",
-  "item.caffeine.coffee_beans_green": "Green Coffee Beans",
-  "item.caffeine.coffee_beans": "Coffee Beans",
-  "item.caffeine.coffee_ground": "Ground Coffee"
+  "item.caffeine.food.coffee_cherries_dried": "Dried Coffee Cherries",
+  "item.caffeine.food.coffee_beans_green": "Green Coffee Beans",
+  "item.caffeine.food.coffee_beans": "Coffee Beans",
+  "item.caffeine.food.coffee_ground": "Ground Coffee",
+
+  "item.caffeine.bucket.coffee": "Coffee Bucket",
+  "item.caffeine.bucket.sweet_coffee": "Sweet Coffee Bucket",
+
+  "fluid.caffeine.food.coffee": "Coffee",
+  "fluid.caffeine.food.sweet_coffee": "Sweet Coffee"
 }

@@ -3,5 +3,6 @@
   "ingredient": {
     "item": "caffeine:food/coffee_beans_green"
   },
-  "heat_capacity": 1.0
+  "hunger": 0,
+  "decay_modifier": 1
 }

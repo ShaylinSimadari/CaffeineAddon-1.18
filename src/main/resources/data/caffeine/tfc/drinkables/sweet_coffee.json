@@ -1,14 +1,14 @@
 {
   "__comment__": "makes it drinkable from a jug etc",
   "ingredient": {
-    "tag": "caffeine:coffee"
+    "tag": "caffeine:sweet_coffee"
   },
   "thirst": 10,
   "effects": [
     {
       "type": "minecraft:speed",
       "duration": 14400,
-      "amplifier": 0
+      "amplifier": 1
     }
   ]
 }

@@ -2,6 +2,7 @@
   "__comment__": "This file was automatically created by mcresources",
   "replace": false,
   "values": [
-    "#caffeine:ingredients"
+    "caffeine:sweet_coffee",
+    "caffeine:flowing_sweet_coffee"
   ]
 }

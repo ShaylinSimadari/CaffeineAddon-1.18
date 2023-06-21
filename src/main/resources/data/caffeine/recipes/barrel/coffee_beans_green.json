@@ -2,7 +2,7 @@
   "type": "tfc:barrel_sealed",
   "input_item": {
     "ingredient": {
-      "item": "caffeine:coffee_cherries_dried"
+      "item": "caffeine:food/coffee_cherries_dried"
     }
   },
   "input_fluid": {
@@ -10,7 +10,7 @@
     "amount": 100
   },
   "output_item": {
-    "item": "caffeine:coffee_beans_green"
+    "item": "caffeine:food/coffee_beans_green"
   },
   "duration": 8000
 }
