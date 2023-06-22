@@ -1,10 +1,13 @@
 package com.pieman.caffeine;
 
 import com.mojang.logging.LogUtils;
+import com.pieman.caffeine.init.BlockEntities;
 import com.pieman.caffeine.init.Blocks;
 import com.pieman.caffeine.init.Fluids;
 import com.pieman.caffeine.init.Items;
+import com.pieman.caffeine.client.ClientEventHandler;
 import net.minecraft.world.level.block.Block;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -16,6 +19,7 @@ import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import org.slf4j.Logger;
 
 import java.util.stream.Collectors;
@@ -38,6 +42,12 @@ public class CaffeineAddon
         Items.ITEMS.register(bus);
         Blocks.BLOCKS.register(bus);
         Fluids.FLUIDS.register(bus);
+        BlockEntities.BLOCK_ENTITIES.register(bus);
+
+        if (FMLEnvironment.dist == Dist.CLIENT) {
+            System.out.println("Client fuck");
+            ClientEventHandler.init();
+        }
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);

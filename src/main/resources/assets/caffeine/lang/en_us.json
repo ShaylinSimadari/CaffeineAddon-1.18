@@ -9,5 +9,8 @@
   "item.caffeine.bucket.sweet_coffee": "Sweet Coffee Bucket",
 
   "fluid.caffeine.food.coffee": "Coffee",
-  "fluid.caffeine.food.sweet_coffee": "Sweet Coffee"
+  "fluid.caffeine.food.sweet_coffee": "Sweet Coffee",
+
+
+  "block.caffeine.drying_mat": "Drying Mat"
 }
