@@ -30,7 +30,10 @@ public class CaffeineAddon
 {
     // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
-//TODO npk 7 1 1 fertalizer
+//TODO jei, jade, pathouli compat
+    //TODO tea. needs to be functionally different
+    //Bees
+    //Butchery
     public CaffeineAddon()
     {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();

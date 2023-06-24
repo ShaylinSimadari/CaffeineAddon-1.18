@@ -35,6 +35,7 @@ public class DryingMatBlockEntity extends TickableInventoryBlockEntity<ItemStack
     private static final int MAX_TIME = 72;
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, DryingMatBlockEntity drying_mat) {
+        //TODO check exposed to sun and daytime and lightlevel
         if(level.isRaining()) {
             for(int i = 0; i < 4; i++) {
                 drying_mat.timers[i] = MAX_TIME;
