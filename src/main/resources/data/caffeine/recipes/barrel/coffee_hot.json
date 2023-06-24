@@ -1,0 +1,20 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:barrel_instant",
+  "input_item": {
+    "ingredient": {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "caffeine:food/coffee_ground"
+      }
+    }
+  },
+  "input_fluid": {
+    "ingredient": "tfc:spring_water",
+    "amount": 500
+  },
+  "output_fluid": {
+    "fluid": "caffeine:coffee",
+    "amount": 500
+  }
+}
