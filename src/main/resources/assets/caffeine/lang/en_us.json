@@ -12,7 +12,14 @@
   "fluid.caffeine.sweet_coffee": "Sweet Coffee",
 
 
+  "block.caffeine.plant.coffee_branch": "Coffee Branch",
+  "block.caffeine.plant.coffee_growing_branch": "Coffee Growing Branch",
+  "block.caffeine.plant.coffee_leaves": "Coffee Leaves",
+  "block.caffeine.plant.coffee_sapling": "Coffee Sapling",
   "block.caffeine.drying_mat": "Drying Mat",
+
+
+
   "tfc.recipe.barrel.caffeine.barrel.coffee_beans_green": "Wet processing",
   "tfc.recipe.barrel.caffeine.barrel.coffee_cold": "Cold Brewing",
   "tfc.recipe.barrel.caffeine.barrel.coffee_hot": "Brewing"

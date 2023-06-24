@@ -59,10 +59,11 @@ public final class FruitBlocks {
         }
 
         public Block createGrowingBranch() {
-            return new com.pieman.caffeine.blocks.plant.fruit.GrowingFruitTreeBranchBlock(ExtendedProperties.of(Material.WOOD).sound(SoundType.SCAFFOLDING).randomTicks().strength(1.0F).blockEntity(TFCBlockEntities.TICK_COUNTER).flammableLikeLogs(), (Supplier) Blocks.FRUIT_TREE_BRANCHES.get(this), (Supplier) Blocks.FRUIT_TREE_LEAVES.get(this), (Supplier) ClimateRanges.FRUIT_TREES.get(this));
+            return new GrowingFruitTreeBranchBlock(ExtendedProperties.of(Material.WOOD).sound(SoundType.SCAFFOLDING).randomTicks().strength(1.0F).blockEntity(TFCBlockEntities.TICK_COUNTER).flammableLikeLogs(), (Supplier) Blocks.FRUIT_TREE_BRANCHES.get(this), (Supplier) Blocks.FRUIT_TREE_LEAVES.get(this), (Supplier) ClimateRanges.FRUIT_TREES.get(this));
         }
 
         public int daysToGrow() {
+            //TODO try add configs
             return defaultDaysToGrow();
 //            return (Integer) ((ForgeConfigSpec.IntValue) TFCConfig.SERVER.fruitSaplingGrowthDays.get(this)).get();
         }
