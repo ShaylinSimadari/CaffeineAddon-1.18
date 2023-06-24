@@ -1,0 +1,17 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "tfc:barrel_instant",
+  "input_item": {
+    "ingredient": {
+      "item": "minecraft:sugar"
+    }
+  },
+  "input_fluid": {
+    "ingredient": "caffeine:coffee",
+    "amount": 500
+  },
+  "output_fluid": {
+    "fluid": "caffeine:sweet_coffee",
+    "amount": 500
+  }
+}

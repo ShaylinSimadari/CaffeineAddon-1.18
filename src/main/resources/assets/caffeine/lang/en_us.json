@@ -8,9 +8,12 @@
   "item.caffeine.bucket.coffee": "Coffee Bucket",
   "item.caffeine.bucket.sweet_coffee": "Sweet Coffee Bucket",
 
-  "fluid.caffeine.food.coffee": "Coffee",
-  "fluid.caffeine.food.sweet_coffee": "Sweet Coffee",
+  "fluid.caffeine.coffee": "Coffee",
+  "fluid.caffeine.sweet_coffee": "Sweet Coffee",
 
 
-  "block.caffeine.drying_mat": "Drying Mat"
+  "block.caffeine.drying_mat": "Drying Mat",
+  "tfc.recipe.barrel.caffeine.barrel.coffee_beans_green": "Wet processing",
+  "tfc.recipe.barrel.caffeine.barrel.coffee_cold": "Cold Brewing",
+  "tfc.recipe.barrel.caffeine.barrel.coffee_hot": "Brewing"
 }

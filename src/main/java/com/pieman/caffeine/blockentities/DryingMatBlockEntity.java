@@ -1,28 +1,22 @@
 package com.pieman.caffeine.blockentities;
 
 import com.pieman.caffeine.init.BlockEntities;
+import com.pieman.caffeine.recipes.DryingMatRecipe;
 import net.dries007.tfc.common.TFCTags;
-import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
-import net.dries007.tfc.common.blockentities.PlacedItemBlockEntity;
-import net.dries007.tfc.common.blockentities.TFCBlockEntities;
-import net.dries007.tfc.common.blocks.TFCBlocks;
+import net.dries007.tfc.common.blockentities.*;
 import net.dries007.tfc.common.capabilities.InventoryItemHandler;
 import net.dries007.tfc.common.capabilities.size.ItemSizeManager;
 import net.dries007.tfc.common.capabilities.size.Size;
+import net.dries007.tfc.common.recipes.inventory.ItemStackInventory;
 import net.dries007.tfc.config.TFCConfig;
 import net.dries007.tfc.util.Helpers;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
@@ -30,10 +24,35 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class DryingMatBlockEntity extends InventoryBlockEntity<ItemStackHandler> {
+public class DryingMatBlockEntity extends TickableInventoryBlockEntity<ItemStackHandler> {
     public static final int SLOT_LARGE_ITEM = 0;
-    private static final Component NAME = Helpers.translatable("tfc.block_entity.placed_item");
+    private static final Component NAME = Helpers.translatable("caffeine.block_entity.drying_mat");
     public boolean isHoldingLargeItem;
+
+    //TODO might not be a well optimized solution
+    // empty mats should be just block, no TE
+    private int[] timers = new int[]{0,0,0,0};
+
+    public static void serverTick(Level level, BlockPos pos, BlockState state, DryingMatBlockEntity drying_mat) {
+
+        for(int i = 0; i < 4; i++) {
+            if (drying_mat.timers[i] > 0) {
+                --drying_mat.timers[i];
+                if (drying_mat.timers[i] == 0) {
+                    drying_mat.finishGrinding(i);
+                    drying_mat.setAndUpdateSlots(i);
+                }
+            }
+        }
+    }
+
+    public static void clientTick(Level level, BlockPos pos, BlockState state, DryingMatBlockEntity drying_mat) {
+        for(int i = 0; i < 4; i++) {
+            if (drying_mat.timers[i] > 0) {
+                --drying_mat.timers[i];
+            }
+        }
+    }
 
     public static int getSlotSelected(BlockHitResult rayTrace) {
         Vec3 location = rayTrace.getLocation();
@@ -66,7 +85,9 @@ public class DryingMatBlockEntity extends InventoryBlockEntity<ItemStackHandler>
         int slot = (x ? 1 : 0) + (z ? 2 : 0);
         if (!player.getItemInHand(InteractionHand.MAIN_HAND).isEmpty() && !player.isShiftKeyDown()) {
             if (!stack.isEmpty()) {
-                return this.insertItem(player, stack, slot);
+                boolean r =  this.insertItem(player, stack, slot);
+                startGrinding(slot);
+                return r;
             }
         } else {
             ItemStack current;
@@ -135,21 +156,24 @@ public class DryingMatBlockEntity extends InventoryBlockEntity<ItemStackHandler>
 
     public void loadAdditional(CompoundTag nbt) {
         this.isHoldingLargeItem = nbt.getBoolean("isHoldingLargeItem");
+        this.timers[0] = nbt.getInt("timers0");
+        this.timers[1] = nbt.getInt("timers1");
+        this.timers[2] = nbt.getInt("timers2");
+        this.timers[3] = nbt.getInt("timers3");
         super.loadAdditional(nbt);
     }
 
     public void saveAdditional(CompoundTag nbt) {
         nbt.putBoolean("isHoldingLargeItem", this.isHoldingLargeItem);
+        nbt.putInt("timers0", this.timers[0]);
+        nbt.putInt("timers1", this.timers[1]);
+        nbt.putInt("timers2", this.timers[2]);
+        nbt.putInt("timers3", this.timers[3]);
         super.saveAdditional(nbt);
     }
 
     protected void updateBlock() {
-        if (this.isEmpty() && this.level != null) {
-            this.level.setBlockAndUpdate(this.worldPosition, Blocks.AIR.defaultBlockState());
-        } else {
-            this.markForBlockUpdate();
-        }
-
+        this.markForBlockUpdate();
     }
 
     protected boolean isEmpty() {
@@ -161,8 +185,45 @@ public class DryingMatBlockEntity extends InventoryBlockEntity<ItemStackHandler>
                     return false;
                 }
             }
-
             return true;
+        }
+    }
+
+    public boolean startGrinding(int slot) {
+        assert this.level != null;
+
+        ItemStack inputStack = ((ItemStackHandler)this.inventory).getStackInSlot(slot);
+        if (!inputStack.isEmpty()) {
+            ItemStackInventory wrapper = new ItemStackInventory(inputStack);
+            DryingMatRecipe recipe = DryingMatRecipe.getRecipe(this.level, wrapper);
+            if (recipe != null && recipe.matches(wrapper, this.level)) {
+                this.timers[slot]=90;
+                this.markForSync();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void finishGrinding(int slot) {
+        assert this.level != null;
+
+        ItemStack inputStack = ((ItemStackHandler)this.inventory).getStackInSlot(slot);
+        if (!inputStack.isEmpty()) {
+            ItemStackInventory wrapper = new ItemStackInventory(inputStack);
+            DryingMatRecipe recipe = DryingMatRecipe.getRecipe(this.level, wrapper);
+            if (recipe != null && recipe.matches(wrapper, this.level)) {
+                ItemStack outputStack = recipe.assemble(wrapper);
+
+                inputStack.shrink(1);
+
+                outputStack = Helpers.mergeInsertStack(this.inventory, slot, outputStack);
+                if (!outputStack.isEmpty() && !this.level.isClientSide) {
+                    Helpers.spawnItem(this.level, this.worldPosition, outputStack);
+                }
+                this.updateBlock();
+                this.markForSync();
+            }
         }
     }
 }

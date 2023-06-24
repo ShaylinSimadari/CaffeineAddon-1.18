@@ -1,0 +1,9 @@
+{
+  "type": "caffeine:drying_mat",
+  "ingredient": {
+    "item": "caffeine:food/coffee_cherries"
+  },
+  "result": {
+    "item": "caffeine:food/coffee_cherries_dried"
+  }
+}

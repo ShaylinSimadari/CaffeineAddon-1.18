@@ -1,4 +1,4 @@
-package com.pieman.caffeine.client.render.blockentity;
+package com.pieman.caffeine.fluids.client.render.blockentity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.pieman.caffeine.blockentities.DryingMatBlockEntity;

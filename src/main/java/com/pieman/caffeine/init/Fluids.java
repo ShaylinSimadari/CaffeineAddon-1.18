@@ -43,10 +43,10 @@ public class Fluids {
 
     static {
         FLUIDS = DeferredRegister.create(ForgeRegistries.FLUIDS, "caffeine");
-        COFFEE = Helpers.mapOfKeys(Coffee.class, (fluid) -> {
-            return register(fluid.getId(), "flowing_" + fluid.getId(), (properties) -> {
-                properties.block((Supplier) Blocks.COFFEE.get(fluid)).bucket((Supplier) Items.FLUID_BUCKETS.get(FluidType.asType(fluid)));
-            }, FluidAttributes.builder(WATER_STILL, WATER_FLOW).translationKey("fluid.caffeine." + fluid.getId()).color(fluid.getColor()).overlay(WATER_OVERLAY).sound(SoundEvents.BUCKET_FILL, SoundEvents.BUCKET_EMPTY), MixingFluid.Source::new, MixingFluid.Flowing::new);
-        });
+        COFFEE = Helpers.mapOfKeys(Coffee.class, (fluid) ->
+            register(fluid.getId(), "flowing_" + fluid.getId(), (properties) ->
+                properties.block((Supplier) Blocks.COFFEE.get(fluid)).bucket((Supplier) Items.FLUID_BUCKETS.get(FluidType.asType(fluid)))
+            , FluidAttributes.builder(WATER_STILL, WATER_FLOW).translationKey("fluid.caffeine." + fluid.getId()).color(fluid.getColor()).overlay(WATER_OVERLAY).sound(SoundEvents.BUCKET_FILL, SoundEvents.BUCKET_EMPTY), MixingFluid.Source::new, MixingFluid.Flowing::new)
+        );
     }
 }
