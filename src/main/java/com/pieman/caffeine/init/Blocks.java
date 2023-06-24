@@ -4,7 +4,6 @@ import com.pieman.caffeine.blockentities.DryingMatBlockEntity;
 import com.pieman.caffeine.blocks.DryingMatBlock;
 import com.pieman.caffeine.blocks.plant.FruitBlocks;
 import com.pieman.caffeine.fluids.Coffee;
-import net.dries007.tfc.common.TFCItemGroup;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.fluids.FlowingFluidRegistryObject;
 import net.dries007.tfc.util.Helpers;
@@ -82,11 +81,11 @@ public class Blocks {
                     .noOcclusion()
                     .blockEntity(BlockEntities.DRYING_MAT)
                     .ticks(DryingMatBlockEntity::serverTick, DryingMatBlockEntity::clientTick));
-        }, TFCItemGroup.MISC);
+        }, Tabs.CAFFEINE);
         FRUIT_TREE_LEAVES = Helpers.mapOfKeys(FruitBlocks.Tree.class, (tree) -> {
             String var10000 = "plant/" + tree.name() + "_leaves";
             Objects.requireNonNull(tree);
-            return register(var10000, tree::createLeaves, TFCItemGroup.FLORA);
+            return register(var10000, tree::createLeaves, Tabs.CAFFEINE);
         });
         FRUIT_TREE_BRANCHES = Helpers.mapOfKeys(FruitBlocks.Tree.class, (tree) -> {
             String var10000 = "plant/" + tree.name() + "_branch";
@@ -101,7 +100,7 @@ public class Blocks {
         FRUIT_TREE_SAPLINGS = Helpers.mapOfKeys(FruitBlocks.Tree.class, (tree) -> {
             String var10000 = "plant/" + tree.name() + "_sapling";
             Objects.requireNonNull(tree);
-            return register(var10000, tree::createSapling, TFCItemGroup.FLORA);
+            return register(var10000, tree::createSapling, Tabs.CAFFEINE);
         });
         FRUIT_TREE_POTTED_SAPLINGS = Helpers.mapOfKeys(FruitBlocks.Tree.class, (tree) -> {
             String var10000 = "plant/potted/" + tree.name() + "_sapling";

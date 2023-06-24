@@ -2,6 +2,7 @@ package com.pieman.caffeine.items;
 
 import com.google.common.collect.Lists;
 import com.mojang.datafixers.util.Pair;
+import com.pieman.caffeine.init.Tabs;
 import net.dries007.tfc.common.TFCItemGroup;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -53,7 +54,7 @@ public enum Food {
 
     public Item.Properties createProperties() {
         Item.Properties props = (new Item.Properties()).food(this.getFoodProperties());
-        props.tab(TFCItemGroup.FOOD);
+        props.tab(Tabs.CAFFEINE);
         return props;
     }
 }

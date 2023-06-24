@@ -6,7 +6,7 @@
   "thirst": 10,
   "effects": [
     {
-      "type": "minecraft:speed",
+      "type": "caffeine:caffeine",
       "duration": 14400,
       "amplifier": 0
     }

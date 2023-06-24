@@ -17,9 +17,16 @@ public class Items {
     public static final DeferredRegister<Item> ITEMS;
     public static final Map<Food, RegistryObject<Item>> FOOD;
     public static final Map<FluidType, RegistryObject<BucketItem>> FLUID_BUCKETS;
+    public static final RegistryObject<Item> USED_COFFEE_GROUNDS;
 
     private static <T extends Item> RegistryObject<T> register(String name, Supplier<T> item) {
         return ITEMS.register(name.toLowerCase(Locale.ROOT), item);
+    }
+
+    private static RegistryObject<Item> register(String name, CreativeModeTab group) {
+        return register(name, () -> {
+            return new Item((new Item.Properties()).tab(group));
+        });
     }
 
     static {
@@ -35,9 +42,11 @@ public class Items {
 
         FLUID_BUCKETS = FluidType.mapOf((fluid) ->
             register("bucket/" + fluid.name(), () ->
-                new BucketItem(fluid.fluid(), (new Item.Properties()).craftRemainder(net.minecraft.world.item.Items.BUCKET).stacksTo(1).tab(TFCItemGroup.MISC))
+                new BucketItem(fluid.fluid(), (new Item.Properties()).craftRemainder(net.minecraft.world.item.Items.BUCKET).stacksTo(1).tab(Tabs.CAFFEINE))
             )
         );
+
+        USED_COFFEE_GROUNDS = register("used_coffee_grounds", Tabs.CAFFEINE);
     }
 
 }

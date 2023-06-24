@@ -1,0 +1,9 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "ingredient": {
+    "item": "caffeine:used_coffee_grounds"
+  },
+  "nitrogen": 0.7,
+  "potassium": 0.1,
+  "phosphorus": 0.1
+}

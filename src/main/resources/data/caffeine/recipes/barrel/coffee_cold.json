@@ -17,5 +17,8 @@
     "fluid": "caffeine:coffee",
     "amount": 500
   },
+  "output_item": {
+    "item": "caffeine:used_coffee_grounds"
+  },
   "duration": 18000
 }

@@ -11,6 +11,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.Function;
 
+//TODO think this class might be doing nothing
 public class Features {
     public static final DeferredRegister<Feature<?>> FEATURES;
     public static final RegistryObject<Feature> FRUIT_TREES;

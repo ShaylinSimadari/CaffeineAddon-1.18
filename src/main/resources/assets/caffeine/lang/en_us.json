@@ -4,6 +4,7 @@
   "item.caffeine.food.coffee_beans_green": "Green Coffee Beans",
   "item.caffeine.food.coffee_beans": "Coffee Beans",
   "item.caffeine.food.coffee_ground": "Ground Coffee",
+  "item.caffeine.used_coffee_grounds": "Used Coffee Grounds",
 
   "item.caffeine.bucket.coffee": "Coffee Bucket",
   "item.caffeine.bucket.sweet_coffee": "Sweet Coffee Bucket",
@@ -22,5 +23,12 @@
 
   "tfc.recipe.barrel.caffeine.barrel.coffee_beans_green": "Wet processing",
   "tfc.recipe.barrel.caffeine.barrel.coffee_cold": "Cold Brewing",
-  "tfc.recipe.barrel.caffeine.barrel.coffee_hot": "Brewing"
+  "tfc.recipe.barrel.caffeine.barrel.coffee_hot": "Brewing",
+
+
+  "effect.caffeine.caffeine": "Caffeine",
+
+
+
+  "itemGroup.caffeine": "Caffeine Addon"
 }

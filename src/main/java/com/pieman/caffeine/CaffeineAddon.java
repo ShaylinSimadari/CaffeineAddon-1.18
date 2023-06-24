@@ -30,7 +30,7 @@ public class CaffeineAddon
 {
     // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
-
+//TODO npk 7 1 1 fertalizer
     public CaffeineAddon()
     {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -46,10 +46,10 @@ public class CaffeineAddon
         RecipeTypes.RECIPE_TYPES.register(bus);
         RecipeSerializers.RECIPE_SERIALIZERS.register(bus);
         Features.FEATURES.register(bus);
+        Effects.EFFECTS.register(bus);
         new ClimateRanges();
 
         if (FMLEnvironment.dist == Dist.CLIENT) {
-            System.out.println("Client fuck");
             ClientEventHandler.init();
         }
 

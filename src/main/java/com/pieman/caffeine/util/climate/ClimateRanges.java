@@ -18,7 +18,6 @@ public class ClimateRanges {
     }
 
     private static RegisteredDataManager.Entry<ClimateRange> register(String name) {
-        System.out.println("***Registering " + Helpers.identifier(name.toLowerCase(Locale.ROOT)));
         return ClimateRange.MANAGER.register(Helpers.identifier(name.toLowerCase(Locale.ROOT)));
     }
 }

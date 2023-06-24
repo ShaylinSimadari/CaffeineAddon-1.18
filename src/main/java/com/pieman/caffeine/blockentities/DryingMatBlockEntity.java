@@ -32,9 +32,15 @@ public class DryingMatBlockEntity extends TickableInventoryBlockEntity<ItemStack
     //TODO might not be a well optimized solution
     // empty mats should be just block, no TE
     private int[] timers = new int[]{0,0,0,0};
+    private static final int MAX_TIME = 72;
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, DryingMatBlockEntity drying_mat) {
-
+        if(level.isRaining()) {
+            for(int i = 0; i < 4; i++) {
+                drying_mat.timers[i] = MAX_TIME;
+            }
+            return;
+        }
         for(int i = 0; i < 4; i++) {
             if (drying_mat.timers[i] > 0) {
                 --drying_mat.timers[i];
@@ -197,7 +203,8 @@ public class DryingMatBlockEntity extends TickableInventoryBlockEntity<ItemStack
             ItemStackInventory wrapper = new ItemStackInventory(inputStack);
             DryingMatRecipe recipe = DryingMatRecipe.getRecipe(this.level, wrapper);
             if (recipe != null && recipe.matches(wrapper, this.level)) {
-                this.timers[slot]=90;
+                //TODO this time value should be gotten from the recipe data
+                this.timers[slot]=MAX_TIME;
                 this.markForSync();
                 return true;
             }
