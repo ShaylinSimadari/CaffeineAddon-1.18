@@ -1,0 +1,12 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "caffeine:food/coffee_cherries_dried"
+    }
+  ],
+  "result": {
+    "item": "caffeine:food/coffee_beans_green"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "caffeine.field_guide.book_name",
+  "landing_text": "caffeine.field_guide.book_landing_text",
+  "subtitle": "1.0",
+  "dont_generate_book": false,
+  "show_progress": false,
+  "macros": {},
+  "extend": "tfc:field_guide"
+}

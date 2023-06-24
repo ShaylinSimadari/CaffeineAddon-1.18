@@ -1,0 +1,22 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "The Drying Mat",
+  "category": "caffeine:coffee",
+  "icon": "caffeine:drying_mat",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "drying_mat",
+      "item": "caffeine:drying_mat",
+      "title": "Drying mat",
+      "link_recipes": true,
+      "text": "Place items on the drying mat in direct sunlight to dry them. Sun drying may take a long time so beware of rain which will reset the timer. Right click an item in the mat to place it. The mat holds up to 4 items. Drying begins as soon as the item is placed on the mat."
+    }
+
+  ],
+  "read_by_default": true,
+  "sortnum": 2,
+  "extra_recipe_mappings": {
+    "tfc:thatch_bed": 0
+  }
+}

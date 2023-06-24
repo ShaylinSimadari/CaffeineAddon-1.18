@@ -1,0 +1,7 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "Coffee",
+  "description": "A Caffeine Crash Course",
+  "icon": "caffeine:food/coffee_beans",
+  "sortnum": 1
+}

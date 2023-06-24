@@ -1,0 +1,296 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "Coffee processing",
+  "category": "caffeine:coffee",
+  "icon": "caffeine:plant/coffee_sapling",
+  "pages": [
+
+    {
+      "type": "patchouli:text",
+      "anchor": "coffee_tree",
+      "text": "$(bold)$(l:the_world/climate#temperature)Temperature$(): 12 - 25 °C$(br)$(bold)$(l:mechanics/hydration)Rainfall$(): 300 - 700mm$(br2)Coffee trees grow in the months of January through April, start flowering in May and June, and bear fruit in July.$(br2)These trees are quite thirsty and require hot climates to grow, making them slightly rarer than other fruit tree varieties.",
+      "title": "Coffee Tree"
+    },
+    {
+      "type": "tfc:multimultiblock",
+      "text": "An example coffee tree.",
+      "multiblocks": [
+        {
+          "pattern": [
+            [
+              "     ",
+              "  L  ",
+              "     ",
+              "     ",
+              "     "
+            ],
+            [
+              "  L  ",
+              " L1L ",
+              "  L  ",
+              "     ",
+              "     "
+            ],
+            [
+              "  L  ",
+              " L1L ",
+              "  L  ",
+              "     ",
+              "     "
+            ],
+            [
+              "  L  ",
+              " L3L ",
+              " L2L ",
+              "  L  ",
+              "     "
+            ],
+            [
+              "     ",
+              "     ",
+              "  0  ",
+              "     ",
+              "     "
+            ],
+            [
+              "     ",
+              "     ",
+              "  1  ",
+              "     ",
+              "     "
+            ]
+          ],
+          "mapping": {
+            "0": "caffeine:plant/coffee_branch[down=true,up=true]",
+            "1": "caffeine:plant/coffee_branch[down=true,up=true]",
+            "2": "caffeine:plant/coffee_branch[down=true,west=true]",
+            "3": "caffeine:plant/coffee_branch[east=true,up=true]",
+            "L": "caffeine:plant/coffee_leaves[lifecycle=dormant]"
+          }
+        },
+        {
+          "pattern": [
+            [
+              "     ",
+              "  L  ",
+              "     ",
+              "     ",
+              "     "
+            ],
+            [
+              "  L  ",
+              " L1L ",
+              "  L  ",
+              "     ",
+              "     "
+            ],
+            [
+              "  L  ",
+              " L1L ",
+              "  L  ",
+              "     ",
+              "     "
+            ],
+            [
+              "  L  ",
+              " L3L ",
+              " L2L ",
+              "  L  ",
+              "     "
+            ],
+            [
+              "     ",
+              "     ",
+              "  0  ",
+              "     ",
+              "     "
+            ],
+            [
+              "     ",
+              "     ",
+              "  1  ",
+              "     ",
+              "     "
+            ]
+          ],
+          "mapping": {
+            "0": "caffeine:plant/coffee_branch[down=true,up=true]",
+            "1": "caffeine:plant/coffee_branch[down=true,up=true]",
+            "2": "caffeine:plant/coffee_branch[down=true,west=true]",
+            "3": "caffeine:plant/coffee_branch[east=true,up=true]",
+            "L": "caffeine:plant/coffee_leaves[lifecycle=healthy]"
+          }
+        },
+        {
+          "pattern": [
+            [
+              "     ",
+              "  L  ",
+              "     ",
+              "     ",
+              "     "
+            ],
+            [
+              "  L  ",
+              " L1L ",
+              "  L  ",
+              "     ",
+              "     "
+            ],
+            [
+              "  L  ",
+              " L1L ",
+              "  L  ",
+              "     ",
+              "     "
+            ],
+            [
+              "  L  ",
+              " L3L ",
+              " L2L ",
+              "  L  ",
+              "     "
+            ],
+            [
+              "     ",
+              "     ",
+              "  0  ",
+              "     ",
+              "     "
+            ],
+            [
+              "     ",
+              "     ",
+              "  1  ",
+              "     ",
+              "     "
+            ]
+          ],
+          "mapping": {
+            "0": "caffeine:plant/coffee_branch[down=true,up=true]",
+            "1": "caffeine:plant/coffee_branch[down=true,up=true]",
+            "2": "caffeine:plant/coffee_branch[down=true,west=true]",
+            "3": "caffeine:plant/coffee_branch[east=true,up=true]",
+            "L": "caffeine:plant/coffee_leaves[lifecycle=flowering]"
+          }
+        },
+        {
+          "pattern": [
+            [
+              "     ",
+              "  L  ",
+              "     ",
+              "     ",
+              "     "
+            ],
+            [
+              "  L  ",
+              " L1L ",
+              "  L  ",
+              "     ",
+              "     "
+            ],
+            [
+              "  L  ",
+              " L1L ",
+              "  L  ",
+              "     ",
+              "     "
+            ],
+            [
+              "  L  ",
+              " L3L ",
+              " L2L ",
+              "  L  ",
+              "     "
+            ],
+            [
+              "     ",
+              "     ",
+              "  0  ",
+              "     ",
+              "     "
+            ],
+            [
+              "     ",
+              "     ",
+              "  1  ",
+              "     ",
+              "     "
+            ]
+          ],
+          "mapping": {
+            "0": "caffeine:plant/coffee_branch[down=true,up=true]",
+            "1": "caffeine:plant/coffee_branch[down=true,up=true]",
+            "2": "caffeine:plant/coffee_branch[down=true,west=true]",
+            "3": "caffeine:plant/coffee_branch[east=true,up=true]",
+            "L": "caffeine:plant/coffee_leaves[lifecycle=fruiting]"
+          }
+        }
+      ]
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Coffee trees produce coffee cherries which can be be processed into coffee with the following method:$(li)$(l:caffeine:coffee/wild_fruits#coffee_cherries_dried)Drying$(/l)  $(li)$(l:caffeine:coffee/wild_fruits#coffee_beans_green)Hulling$(/l)  $(li)$(l:caffeine:coffee/wild_fruits#coffee_beans)Roasting$(/l)  $(li)$(l:caffeine:coffee/wild_fruits#coffee_ground)Grinding$(/l)  $(li)$(l:caffeine:coffee/wild_fruits#coffee)Brewing$(/l)"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "coffee_cherries",
+      "item": "caffeine:food/coffee_cherries",
+      "title": "Coffee Cherries",
+      "link_recipes": true,
+      "text": "Obtained from fruit producing coffee trees"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "coffee_cherries_dried",
+      "item": "caffeine:food/coffee_cherries_dried",
+      "title": "Dried Coffee Cherries",
+      "link_recipes": true,
+      "text": "Obtained by leaving coffee cherries on a drying mat for 3 days"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "coffee_beans_green",
+      "item": "caffeine:food/coffee_beans_green",
+      "title": "Green Coffee Beans",
+      "link_recipes": true,
+      "text": "Obtained by crafting dried coffee cherries on their own"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "coffee_beans",
+      "item": "caffeine:food/coffee_beans",
+      "title": "Coffee Beans",
+      "link_recipes": true,
+      "text": "Obtained by heating green coffee beans in a campfire, forge or similar"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "coffee_ground",
+      "item": "caffeine:food/coffee_ground",
+      "title": "Ground Coffee Beans",
+      "link_recipes": true,
+      "text": "Obtained by grinding coffee beans in a quern"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "coffee",
+      "item": "caffeine:bucket/coffee",
+      "title": "Coffee",
+      "link_recipes": true,
+      "text": "Obtained by placing ground coffee and water in a barrel and letting it brew overnight. Using hot spring water instead will brew it instantly."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "used_coffee_grounds",
+      "item": "caffeine:used_coffee_grounds",
+      "title": "Used Coffee Grounds",
+      "link_recipes": true,
+      "text": "A byproduct of brewing coffee. Is a nitrogen rich fertilizer composed of: $(li)Nitrogen: 70%$(li)Phosphorus: 10%$(li)Potassium: 10%"
+    }
+
+  ],
+  "read_by_default": true,
+  "sortnum": 0
+}

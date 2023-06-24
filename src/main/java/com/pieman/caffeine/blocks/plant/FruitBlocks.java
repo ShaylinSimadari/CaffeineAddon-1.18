@@ -26,7 +26,11 @@ import java.util.function.Supplier;
 
 public final class FruitBlocks {
     public static enum Tree implements StringRepresentable {
-        COFFEE(Food.COFFEE_CHERRIES, 8, new Lifecycle[]{Lifecycle.HEALTHY, Lifecycle.HEALTHY, Lifecycle.HEALTHY, Lifecycle.FLOWERING, Lifecycle.FLOWERING, Lifecycle.FRUITING, Lifecycle.DORMANT, Lifecycle.DORMANT, Lifecycle.DORMANT, Lifecycle.DORMANT, Lifecycle.DORMANT, Lifecycle.HEALTHY});
+        COFFEE(Food.COFFEE_CHERRIES, 8, new Lifecycle[]{
+                Lifecycle.HEALTHY, Lifecycle.HEALTHY, Lifecycle.HEALTHY, Lifecycle.HEALTHY,
+                Lifecycle.FLOWERING, Lifecycle.FLOWERING, Lifecycle.FRUITING,
+                Lifecycle.DORMANT, Lifecycle.DORMANT,
+                Lifecycle.DORMANT, Lifecycle.DORMANT, Lifecycle.HEALTHY});
 
         private final Food product;
         private final Lifecycle[] stages;
