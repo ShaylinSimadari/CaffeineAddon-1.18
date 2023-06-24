@@ -1,11 +1,11 @@
 package com.pieman.caffeine;
 
 import com.mojang.logging.LogUtils;
-import com.pieman.caffeine.init.BlockEntities;
-import com.pieman.caffeine.init.Blocks;
-import com.pieman.caffeine.init.Fluids;
-import com.pieman.caffeine.init.Items;
-import com.pieman.caffeine.client.ClientEventHandler;
+import com.pieman.caffeine.init.*;
+import com.pieman.caffeine.fluids.client.ClientEventHandler;
+import com.pieman.caffeine.recipes.RecipeSerializers;
+import com.pieman.caffeine.recipes.RecipeTypes;
+import com.pieman.caffeine.util.climate.ClimateRanges;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -43,6 +43,10 @@ public class CaffeineAddon
         Blocks.BLOCKS.register(bus);
         Fluids.FLUIDS.register(bus);
         BlockEntities.BLOCK_ENTITIES.register(bus);
+        RecipeTypes.RECIPE_TYPES.register(bus);
+        RecipeSerializers.RECIPE_SERIALIZERS.register(bus);
+        Features.FEATURES.register(bus);
+        new ClimateRanges();
 
         if (FMLEnvironment.dist == Dist.CLIENT) {
             System.out.println("Client fuck");
@@ -52,12 +56,16 @@ public class CaffeineAddon
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
     }
-
+//TODO limoncello
     private void setup(final FMLCommonSetupEvent event)
     {
-        // some preinit code
-        LOGGER.info("HELLO FROM PREINIT");
-//        LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
+        event.enqueueWork(() -> {
+            Blocks.registerFlowerPotFlowers();
+        }).exceptionally((e) -> {
+            LOGGER.error("An unhandled exception was thrown during synchronous mod loading:", e);
+//            this.syncLoadError = e;
+            return null;
+        });
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)

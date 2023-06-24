@@ -1,0 +1,7 @@
+{
+  "__comment__": "defines the blockstate to place for worldgen",
+  "type": "tfc:fruit_trees",
+  "config": {
+    "state": "caffeine:plant/coffee_growing_branch"
+  }
+}
