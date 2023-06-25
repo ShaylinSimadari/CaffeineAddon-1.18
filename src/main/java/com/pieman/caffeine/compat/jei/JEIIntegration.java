@@ -1,6 +1,6 @@
-package com.pieman.caffeine.compat;
+package com.pieman.caffeine.compat.jei;
 
-import com.pieman.caffeine.compat.category.DryingMatRecipeCategory;
+import com.pieman.caffeine.compat.jei.category.DryingMatRecipeCategory;
 import com.pieman.caffeine.recipes.DryingMatRecipe;
 import com.pieman.caffeine.recipes.RecipeTypes;
 import mezz.jei.api.IModPlugin;

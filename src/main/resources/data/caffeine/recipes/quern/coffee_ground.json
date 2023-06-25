@@ -1,9 +1,17 @@
 {
   "type": "tfc:quern",
   "ingredient": {
-    "item": "caffeine:food/coffee_beans"
+    "type": "tfc:not_rotten",
+    "ingredient": {
+      "item": "caffeine:food/coffee_beans"
+    }
   },
   "result": {
-    "item": "caffeine:food/coffee_ground"
+    "stack": {
+      "item": "caffeine:food/coffee_ground"
+    },
+    "modifiers": [
+      "tfc:copy_food"
+    ]
   }
 }

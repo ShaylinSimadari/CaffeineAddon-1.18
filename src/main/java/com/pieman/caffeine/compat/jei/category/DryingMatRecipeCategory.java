@@ -1,4 +1,4 @@
-package com.pieman.caffeine.compat.category;
+package com.pieman.caffeine.compat.jei.category;
 
 import com.pieman.caffeine.init.Blocks;
 import com.pieman.caffeine.recipes.DryingMatRecipe;

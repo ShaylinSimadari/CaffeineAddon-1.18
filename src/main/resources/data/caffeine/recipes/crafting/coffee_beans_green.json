@@ -1,12 +1,29 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
+  "type": "tfc:damage_inputs_shapeless_crafting",
+  "recipe": {
+    "type": "tfc:advanced_shapeless_crafting",
+    "ingredients": [
+      {
+        "type": "tfc:not_rotten",
+        "ingredient": {
+          "item": "caffeine:food/coffee_cherries_dried"
+        }
+      },
+      {
+        "tag": "tfc:hammers"
+      }
+    ],
+    "primary_ingredient": {
       "item": "caffeine:food/coffee_cherries_dried"
+    },
+    "result": {
+      "stack": {
+        "item": "caffeine:food/coffee_beans_green"
+      },
+      "modifiers": [
+        "tfc:copy_food"
+      ]
     }
-  ],
-  "result": {
-    "item": "caffeine:food/coffee_beans_green"
   }
 }

@@ -149,7 +149,7 @@ repositories {
     // }
 
     maven {
-        //tfc
+        //TFC, Jade
         url 'https://www.cursemaven.com'
         content {
             includeGroup "curse.maven"
@@ -179,7 +179,7 @@ dependencies {
     // Specify the version of Minecraft to use. If this is any group other than 'net.minecraft', it is assumed
     // that the dep is a ForgeGradle 'patcher' dependency, and its patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
-    minecraft 'net.minecraftforge:forge:1.18.2-40.1.73'
+    minecraft "net.minecraftforge:forge:${forge_version}"
 
     // Real mod deobf dependency examples - these get remapped to your current mappings
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api") // Adds JEI API as a compile dependency
@@ -193,17 +193,21 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
-    // tfc
-    fg.deobf("curse.maven:tfc-302973:${4572444}")
-    implementation fg.deobf("curse.maven:tfc-302973:${4572444}")
+    // TFC
+    fg.deobf("curse.maven:tfc-302973:${tfc_version}")
+    implementation fg.deobf("curse.maven:tfc-302973:${tfc_version}")
 
-    // patchouli
-    compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.18.2-71.1:api")
-    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.18.2-71.1")
+    // Patchouli
+    compileOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}:api")
+    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
 
     // JEI
     compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api")
     runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
+
+    // Jade
+    compileOnly(fg.deobf("curse.maven:jade-324717:${jade_version}"))
+    runtimeOnly(fg.deobf("curse.maven:jade-324717:${jade_version}"))
 }
 
 // Example for how to get properties into the manifest for reading at runtime.

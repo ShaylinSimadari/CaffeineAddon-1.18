@@ -34,6 +34,8 @@ public class CaffeineAddon
     //TODO tea. needs to be functionally different
     //Bees
     //Butchery
+    //pottery + glazing
+    //light roast and dark roat where light roast more coffee but harder to brew somehow
     public CaffeineAddon()
     {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();

@@ -1,9 +1,18 @@
 {
   "type": "caffeine:drying_mat",
   "ingredient": {
-    "item": "caffeine:food/coffee_cherries"
+    "type": "tfc:not_rotten",
+    "ingredient": {
+      "item": "caffeine:food/coffee_cherries"
+    }
   },
   "result": {
-    "item": "caffeine:food/coffee_cherries_dried"
-  }
+    "stack": {
+      "item": "caffeine:food/coffee_cherries_dried"
+    },
+    "modifiers": [
+      "tfc:copy_food"
+    ]
+  },
+  "duration": 200
 }
