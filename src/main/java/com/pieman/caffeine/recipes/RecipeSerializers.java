@@ -10,7 +10,7 @@ import java.util.function.Supplier;
 
 public class RecipeSerializers {
     public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS;
-    public static final RegistryObject<SimpleItemRecipe.Serializer<DryingMatRecipe>> DRYING_MAT;
+    public static final RegistryObject<DryingMatRecipe.Serializer> DRYING_MAT;
 
     private static <S extends RecipeSerializer<?>> RegistryObject<S> register(String name, Supplier<S> factory) {
         return RECIPE_SERIALIZERS.register(name, factory);
@@ -18,8 +18,6 @@ public class RecipeSerializers {
 
     static {
         RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, "caffeine");
-        DRYING_MAT = register("drying_mat", () -> {
-            return new SimpleItemRecipe.Serializer(DryingMatRecipe::new);
-        });
+        DRYING_MAT = register("drying_mat", DryingMatRecipe.Serializer::new);
     }
 }

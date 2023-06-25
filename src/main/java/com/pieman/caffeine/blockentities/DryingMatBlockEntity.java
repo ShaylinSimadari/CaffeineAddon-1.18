@@ -7,6 +7,7 @@ import net.dries007.tfc.common.blockentities.*;
 import net.dries007.tfc.common.capabilities.InventoryItemHandler;
 import net.dries007.tfc.common.capabilities.size.ItemSizeManager;
 import net.dries007.tfc.common.capabilities.size.Size;
+import net.dries007.tfc.common.recipes.LoomRecipe;
 import net.dries007.tfc.common.recipes.inventory.ItemStackInventory;
 import net.dries007.tfc.config.TFCConfig;
 import net.dries007.tfc.util.Helpers;
@@ -28,37 +29,36 @@ public class DryingMatBlockEntity extends TickableInventoryBlockEntity<ItemStack
     public static final int SLOT_LARGE_ITEM = 0;
     private static final Component NAME = Helpers.translatable("caffeine.block_entity.drying_mat");
     public boolean isHoldingLargeItem;
+    //TODO Replace this shit with a placeable coffee cherries
 
     //TODO might not be a well optimized solution
     // empty mats should be just block, no TE
     private int[] timers = new int[]{0,0,0,0};
-    private static final int MAX_TIME = 72;
+    private DryingMatRecipe[] recipes = new DryingMatRecipe[]{null, null, null, null};
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, DryingMatBlockEntity drying_mat) {
-        //TODO check exposed to sun and daytime and lightlevel
         if(level.isRaining()) {
             for(int i = 0; i < 4; i++) {
-                drying_mat.timers[i] = MAX_TIME;
+                if (drying_mat.recipes[i] != null) {
+                    drying_mat.timers[i] = drying_mat.recipes[i].getDuration();
+                }
             }
             return;
         }
-        for(int i = 0; i < 4; i++) {
-            if (drying_mat.timers[i] > 0) {
-                --drying_mat.timers[i];
-                if (drying_mat.timers[i] == 0) {
-                    drying_mat.finishGrinding(i);
-                    drying_mat.setAndUpdateSlots(i);
+        if(level.canSeeSky(pos) || level.getRawBrightness(pos, 0) > 12) {
+            for (int i = 0; i < 4; i++) {
+                if (drying_mat.timers[i] > 0) {
+                    --drying_mat.timers[i];
+                    if (drying_mat.timers[i] == 0) {
+                        drying_mat.finishDrying(i);
+                        drying_mat.setAndUpdateSlots(i);
+                    }
                 }
             }
         }
     }
 
     public static void clientTick(Level level, BlockPos pos, BlockState state, DryingMatBlockEntity drying_mat) {
-        for(int i = 0; i < 4; i++) {
-            if (drying_mat.timers[i] > 0) {
-                --drying_mat.timers[i];
-            }
-        }
     }
 
     public static int getSlotSelected(BlockHitResult rayTrace) {
@@ -93,7 +93,7 @@ public class DryingMatBlockEntity extends TickableInventoryBlockEntity<ItemStack
         if (!player.getItemInHand(InteractionHand.MAIN_HAND).isEmpty() && !player.isShiftKeyDown()) {
             if (!stack.isEmpty()) {
                 boolean r =  this.insertItem(player, stack, slot);
-                startGrinding(slot);
+                startDrying(slot);
                 return r;
             }
         } else {
@@ -132,6 +132,7 @@ public class DryingMatBlockEntity extends TickableInventoryBlockEntity<ItemStack
                     }
 
                     ((ItemStackHandler)this.inventory).setStackInSlot(slot, input);
+                    this.updateCachedRecipe(slot);
                     this.updateBlock();
                     return true;
                 }
@@ -140,10 +141,11 @@ public class DryingMatBlockEntity extends TickableInventoryBlockEntity<ItemStack
                     input = stack.copy();
                     input.setCount(1);
                 } else {
-                    input = stack.split(1);
+                    input = stack.split(0);
                 }
 
                 ((ItemStackHandler)this.inventory).setStackInSlot(0, input);
+                this.updateCachedRecipe(0);
                 this.isHoldingLargeItem = true;
                 this.updateBlock();
                 return true;
@@ -163,19 +165,14 @@ public class DryingMatBlockEntity extends TickableInventoryBlockEntity<ItemStack
 
     public void loadAdditional(CompoundTag nbt) {
         this.isHoldingLargeItem = nbt.getBoolean("isHoldingLargeItem");
-        this.timers[0] = nbt.getInt("timers0");
-        this.timers[1] = nbt.getInt("timers1");
-        this.timers[2] = nbt.getInt("timers2");
-        this.timers[3] = nbt.getInt("timers3");
+        this.timers = nbt.getIntArray("timers");
         super.loadAdditional(nbt);
+        this.updateCachedRecipes();
     }
 
     public void saveAdditional(CompoundTag nbt) {
         nbt.putBoolean("isHoldingLargeItem", this.isHoldingLargeItem);
-        nbt.putInt("timers0", this.timers[0]);
-        nbt.putInt("timers1", this.timers[1]);
-        nbt.putInt("timers2", this.timers[2]);
-        nbt.putInt("timers3", this.timers[3]);
+        nbt.putIntArray("timers", this.timers);
         super.saveAdditional(nbt);
     }
 
@@ -196,7 +193,7 @@ public class DryingMatBlockEntity extends TickableInventoryBlockEntity<ItemStack
         }
     }
 
-    public boolean startGrinding(int slot) {
+    public boolean startDrying(int slot) {
         assert this.level != null;
 
         ItemStack inputStack = ((ItemStackHandler)this.inventory).getStackInSlot(slot);
@@ -205,7 +202,8 @@ public class DryingMatBlockEntity extends TickableInventoryBlockEntity<ItemStack
             DryingMatRecipe recipe = DryingMatRecipe.getRecipe(this.level, wrapper);
             if (recipe != null && recipe.matches(wrapper, this.level)) {
                 //TODO this time value should be gotten from the recipe data
-                this.timers[slot]=MAX_TIME;
+                this.timers[slot] = recipe.getDuration();
+                this.recipes[slot] = recipe;
                 this.markForSync();
                 return true;
             }
@@ -213,7 +211,7 @@ public class DryingMatBlockEntity extends TickableInventoryBlockEntity<ItemStack
         return false;
     }
 
-    private void finishGrinding(int slot) {
+    private void finishDrying(int slot) {
         assert this.level != null;
 
         ItemStack inputStack = ((ItemStackHandler)this.inventory).getStackInSlot(slot);
@@ -229,9 +227,22 @@ public class DryingMatBlockEntity extends TickableInventoryBlockEntity<ItemStack
                 if (!outputStack.isEmpty() && !this.level.isClientSide) {
                     Helpers.spawnItem(this.level, this.worldPosition, outputStack);
                 }
+                this.recipes[slot] = null;
+                this.timers[slot] = 0;
                 this.updateBlock();
                 this.markForSync();
             }
+        }
+    }
+
+    private void updateCachedRecipe(int slot) {
+        assert this.level != null;
+        this.recipes[slot] = DryingMatRecipe.getRecipe(this.level, ((ItemStackHandler)this.inventory).getStackInSlot(slot));
+    }
+
+    private void updateCachedRecipes() {
+        for (int i = 0; i < 4; i++){
+            updateCachedRecipe(i);
         }
     }
 }
