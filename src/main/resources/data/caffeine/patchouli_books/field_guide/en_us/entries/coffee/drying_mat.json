@@ -17,6 +17,6 @@
   "read_by_default": true,
   "sortnum": 2,
   "extra_recipe_mappings": {
-    "tfc:thatch_bed": 0
+    "caffeine:drying_mat": 0
   }
 }
